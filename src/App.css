@@ -1,0 +1,84 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p,h1,h2,h3,h4,h5 {
+  margin: 0;
+}
+
+.film-list-container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+
+.film-list-error {
+  margin: auto;
+  width: 60%;
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+
+.film-list-title {
+  width: 60%;
+  margin: auto;
+  padding: 20px 0 0 0;
+}
+
+.film-search {
+  padding: 20px 0 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.film-search input {
+  width: 50%;
+  padding: 10px;
+  outline: none;
+}
+
+.film-search button {
+  padding: 10px;
+}
+
+.film-list-all {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 20px 0 0 0;
+}
+
+.film-box {
+  background-color: orange;
+}
+
+.film-poster {
+  background-color: red;
+  height: 80%;
+}
+
+.film-poster img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.film-desc {
+  height: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.loading {
+  width: 60%;
+  margin: auto;
+}
+
+.title {
+  cursor: pointer;
+}
