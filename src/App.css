@@ -31,16 +31,19 @@ p,h1,h2,h3,h4,h5 {
   padding: 20px 0 20px 0;
   display: flex;
   justify-content: center;
+  width: 60%;
+  margin: auto;
+  gap: 1rem;
 }
 
 .film-search input {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   outline: none;
 }
 
 .film-search button {
-  padding: 10px;
+  padding: 10px 35px;
 }
 
 .film-list-all {
