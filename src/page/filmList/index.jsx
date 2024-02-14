@@ -20,8 +20,7 @@ export default function FilmList() {
     const handleSearch = async() => {
         setCurrentPage(1);
         setLoading(true);
-        const result = await SearchFilm(searchMovie, currentPage);
-        console.log(result);
+        const result = await SearchFilm(searchMovie, currentPage) || [];
         if(result.error) {
             setNoDataFilm(result.error);
             setDataSearch([]);
@@ -35,13 +34,23 @@ export default function FilmList() {
 
     const loadMoreResults = useCallback(async () => {
         if (!hasMore || loading) return;
+
         setLoading(true);
         const nextPage = currentPage + 1;
-        const result = await SearchFilm(searchMovie, nextPage);
-        setDataSearch((prevData) => [...prevData, ...result]);
-        setCurrentPage(nextPage);
-        setHasMore(result.length > 0);
-        setLoading(false);
+
+        try {
+            const result = await SearchFilm(searchMovie, nextPage);
+            if(Array.isArray(result)) {
+                setDataSearch((prevData) => [...prevData, ...result]);
+                setCurrentPage(nextPage);
+                setHasMore(result.length > 0);
+            }
+            
+        } catch (error) {
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     }, [currentPage, hasMore, loading, searchMovie]);
 
     const lastFilmElementRef  = useCallback((node) => {

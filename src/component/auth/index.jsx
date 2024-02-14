@@ -9,6 +9,7 @@ export const SearchFilm = async(value, page = 1) => {
         } else {
             return response.data.Search || [];
         }
+        
     } catch (error) {
         throw error;
     }
