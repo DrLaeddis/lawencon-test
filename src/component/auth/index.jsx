@@ -13,3 +13,12 @@ export const SearchFilm = async(value, page = 1) => {
         throw error;
     }
 }
+
+export const SearchByID = async(value) => {
+    try {
+        const response = await axios(url+apiKey+"&i="+value);
+        return response.data
+    } catch (error) {
+        throw error;
+    }
+}

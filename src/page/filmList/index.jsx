@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { SearchFilm } from "../../component/auth";
 import SearchComponent from "../../component/search/search";
 import AllModal from "../../component/modal/modal";
+import { useNavigate } from "react-router-dom";
 
 export default function FilmList() {
 
@@ -14,11 +15,13 @@ export default function FilmList() {
     const [modalPoster, setModalPoster] = useState(false);
     const [modalData, setModalData] = useState([]);
     const observer = useRef();
+    const navigate = useNavigate();
 
     const handleSearch = async() => {
         setCurrentPage(1);
         setLoading(true);
         const result = await SearchFilm(searchMovie, currentPage);
+        console.log(result);
         if(result.error) {
             setNoDataFilm(result.error);
             setDataSearch([]);
@@ -82,6 +85,14 @@ export default function FilmList() {
         setModalData(dataFilm)
     }
 
+    const handleDetailFilm = (value) => {
+        navigate('/detail-film', {
+            state: {
+                detailFilm: value
+            }
+        });
+    }
+
     return (
         <div className="film-list-container">
             <div className="film-list-title">
@@ -110,7 +121,7 @@ export default function FilmList() {
                             <img src={items.Poster} alt="" onClick={()=> handleShowModal(true, items)} />
                         </div>
                         <div className="film-desc">
-                            <h2 className="title">{items.Title}</h2>
+                            <h2 className="title" onClick={()=>handleDetailFilm(items)}>{items.Title}</h2>
                         </div>
                     </div>
                 ))}
